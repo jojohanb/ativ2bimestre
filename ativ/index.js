@@ -1,50 +1,69 @@
-//DECLARANDO VARIAVEIS
-var botao = document.getElementById("botao");
-var span1 = document.getElementById("span1");
-var span2= document.getElementById("span2")
-var linhona = document.getElementById("linhona");
-var img = document.getElementById("img");
-var msgs = document.getElementById("msgs");
-var input = document.getElementById("tarefa").value;
+  // DECLARACAO DE VARIÁVEIS
+  var botao = document.getElementById("botao");
+  var span1 = document.getElementById("span1");
+  var span2 = document.getElementById("span2");
+  var linhona = document.getElementById("linhona");
+  var img = document.getElementById("img");
+  var msgs = document.getElementById("msgs");
 
-//FUNCOES
-botao.addEventListener("click", function() {
-    if (input.trim() !== " ") {
-        var div = document.createElement("div");
-        div.classList.add("checkbox-container");
+  // FUNCOES
+  function adicionarTarefa(tarefa) {
+      var div = document.createElement("div");
+      div.classList.add("checkbox-container");
 
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
 
-        var label = document.createElement("label");
-        label.textContent = input;
-        label.insertAdjacentHTML("beforeend", '<img src="/atv2/trash.png" alt="Excluir">');
+      var label = document.createElement("label");
+      label.textContent = tarefa;
 
-        label.querySelector("img").addEventListener("click", function() {
-        linhona.removeChild(div);
-        span1.textContent = parseInt(span1.textContent) - 1;
+      var imagem = document.createElement("img");
+      imagem.src = "/atv2/trash.png";
 
-    if (parseInt(span1.textContent) === 0) {
-        img.style.display = "block";
-         msgs.style.display = "block";
-         }
-            });
+      imagem.addEventListener("click", function() {
+          linhona.removeChild(div);
+          contagem();
+      });
 
-                div.appendChild(checkbox);
-                div.appendChild(label);
+      checkbox.addEventListener("change", function() {
+          contagem();
+      });
 
-                linhona.appendChild(div);
-                document.getElementById("tarefa").value = "";
-                span1.textContent = parseInt(span1.textContent) + 1;
+      label.appendChild(imagem);
+      div.appendChild(checkbox);
+      div.appendChild(label);
+      linhona.appendChild(div);
 
-                if (img && msgs) {
-                    img.style.display = "none";
-                    msgs.style.display = "none";
-                }
-            } else {
-                alert("Digite uma tarefa");
-            }
-        });
+      contagem();
+  }
+
+  botao.addEventListener("click", function() {
+      var input = document.getElementById("tarefa").value.trim();
+
+      if (input !== "") {
+          adicionarTarefa(input);
+          document.getElementById("tarefa").value = "";
+      } else {
+          alert("Digite uma tarefa.");
+      }
+  });
+
+  function contagem() {
+      var totalTarefas = document.querySelectorAll('.checkbox-container').length;
+      var tarefasCompletas = document.querySelectorAll('.checkbox-container input[type="checkbox"]:checked').length;
+
+      span1.textContent = totalTarefas;
+      span2.textContent = `${tarefasCompletas}/${totalTarefas}`;
+
+      if (totalTarefas === 0) {
+          img.style.display = "block";
+          msgs.style.display = "block";
+      } else {
+          img.style.display = "none";
+          msgs.style.display = "none";
+      }
+  }
+
 
         // function salvarTarefas (){
         //     var tarefas= []
