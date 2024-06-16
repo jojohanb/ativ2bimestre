@@ -9,7 +9,7 @@
   // FUNCOES
   function adicionarTarefa(tarefa) {
       var div = document.createElement("div");
-      div.classList.add("checkbox-container");
+      div.classList.add("checkbox-container"); //aqui adiciona um classe ao elemento
 
       var checkbox = document.createElement("input");
       checkbox.type = "checkbox";
@@ -25,7 +25,7 @@
           contagem();
       });
 
-      checkbox.addEventListener("change", function() {
+      checkbox.addEventListener("change", function() { //aqui o evento change é acionado pela marcacao da checkboxs
           contagem();
       });
 
