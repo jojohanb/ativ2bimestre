@@ -6,6 +6,10 @@
   var img = document.getElementById("img");
   var msgs = document.getElementById("msgs");
 
+  var listaTarefas= []
+  var tarefasCriadas=0
+  var tarefasConcluidas=0
+  
   // FUNCOES
   function adicionarTarefa(tarefa) {
       var div = document.createElement("div");
