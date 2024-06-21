@@ -11,7 +11,7 @@ window.onload = function() { //nessa parte do codigo esta carregando as tarefas 
     carregarTarefas();
 }
 
-var tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+var tarefas = JSON.parse(localStorage.getItem('tarefas')) || []; 
 var IDTarefas = localStorage.getItem('IDTarefas') || 1; 
 
 //FUNCOES
@@ -86,7 +86,7 @@ function contagem() {
 }
 
 function removerTarefa(id) {
-    tarefas = tarefas.filter(function(tarefa) {
+    tarefas = tarefas.filter(function(tarefa) { 
         return tarefa.id !== id;
     });
     salvarTarefas();
