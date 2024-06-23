@@ -11,7 +11,7 @@ window.onload = function() { //nessa parte do codigo esta carregando as tarefas 
     carregarTarefas();
 }
 
-var tarefas = JSON.parse(localStorage.getItem('tarefas')) || []; 
+var tarefas = JSON.parse(localStorage.getItem('tarefas')) || []; //aqui pega as tarefas do localStorage ou cria um array vazio se nao tiver tarefas
 var IDTarefas = localStorage.getItem('IDTarefas') || 1; 
 
 //FUNCOES
@@ -42,7 +42,7 @@ function adicionarTarefa(tarefa, completa = false) {
         contagem();
     });
 
-    checkbox.addEventListener("change", function() {
+    checkbox.addEventListener("change", function() { //adicionando um evento de mudança no check
         atualizarEstado(id, checkbox.checked);
         contagem();
     });
@@ -87,7 +87,7 @@ function contagem() {
 
 function removerTarefa(id) {
     tarefas = tarefas.filter(function(tarefa) { 
-        return tarefa.id !== id;
+        return tarefa.id !== id; //aqui vai retornar as tarefas menos as que devem ser removidas
     });
     salvarTarefas();
 }
